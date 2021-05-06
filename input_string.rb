@@ -7,7 +7,7 @@ class InputString
   def initialize(text)
     @text = text.chomp.split(" ")
     # initializeの中でchomp, splitしていいんだ〜
-    config_abnormal(@text)
+    config_abnormal
   end
 
 end

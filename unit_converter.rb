@@ -1,22 +1,22 @@
-require "./program_config"
 
 # UnitConverterの責任：
 # 単位を変換する
 
 class UnitConverter
-  include ProgramConfig
+  UNITS = { "mg" => 1, "g" => 1000, "kg" => 1000000 }.freeze
+
   attr_accessor :elements
   def initialize(elements)
     @elements = elements
   end
 
-  # 質量を最小(config_unitsで1と設定したもの)に変換
+  # 質量を最小(UNITSで1と設定したもの)に変換
   def convert_to_min
     elements.map do |ele|
       if ele =~ /[0-9]+[a-z]+/
         unit = ele.slice(/[a-z]+/)
         num = ele.slice(/[0-9]+/).to_i
-        config_units.map do |key, value|
+        UNITS.map do |key, value|
           if key == unit
             ele = num * value
           end
@@ -28,7 +28,7 @@ class UnitConverter
 
   # 最小単位で計算した結果を適切な単位に戻す。
   def convert_to_correct(result)
-    config_units.each do |key, value|
+    UNITS.each do |key, value|
       if sort_units.include?(key)
         return ( result / value ).to_s + key
         break
