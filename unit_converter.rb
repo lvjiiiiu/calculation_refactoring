@@ -10,6 +10,14 @@ class UnitConverter
     @units = filter_units
   end
 
+  def calculate
+    tokens = convert_to_min
+    sum = eval(tokens.join)
+    convert_to_correct(sum)
+  end 
+
+  private
+
   # 質量を最小(UNITSで1と設定したもの)に変換
   def convert_to_min
     @elements.map do |token|
@@ -32,7 +40,6 @@ class UnitConverter
     @elements.
 
 
-  private
 
   def filter_units
     @elements.
