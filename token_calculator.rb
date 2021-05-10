@@ -1,12 +1,12 @@
-
+require "./token_parser"
 # UnitConverterの責任：
 # 単位を変換する
 
 class TokeCalculater
   UNITS = { "mg" => 1, "g" => 1000, "kg" => 1000000 }.freeze
 
-  def initialize(tokens)
-    @tokens = tokens
+  def initialize(text)
+    @tokens = TokenPaser.new(text).tokens
     @units = filter_units
     validate_units!
   end
