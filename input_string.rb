@@ -3,9 +3,9 @@ require "./unit_converter"
 # 入力された文字列の加工、異常系の判定
 
 class InputString
-  attr_reader :text
+  attr_reader :tokens
   def initialize(text)
-    @text = text.chomp.split(" ")
+    @tokens = text.chomp.split(" ")
     # initializeの中でchomp, splitしていいんだ〜
     validate!
   end
@@ -17,12 +17,12 @@ class InputString
     formula = @text.join(" ")
 
     # 引数の先頭が質量ではなかった場合
-    unless mass_exp.match?(@text.first)
-      raise ArgumentError.new("error: first argument must be weight-value(ex: 1kg)")
+    unless mass_exp.match?(@tokens.first)
+      raise ArgumentError, "error: first argument must be weight-value(ex: 1kg)"
     end
 
     if /[*\/] [0-9]+[a-z]+/.match?(formula)
-      raise ArgumentError.new("error: multiplier & divisor must be a number at * , \/")
+      raise ArgumentError, "error: multiplier & divisor must be a number at * , \/"
     end
 
     @text.each do |token|
@@ -31,7 +31,7 @@ class InputString
       next if unit.nill?
       # 単位がついているとき、それがUNITSのkeyの中に含まれているか判定
       unless UnitConverter::UNITS.keys.any?(unit)
-        raise ArgumentError.new("error: the unit must be one of #{UnitConverter::UNITS.keys}")
+        raise ArgumentError, "error: the unit must be one of #{UnitConverter::UNITS.keys}"
       end
     end
   end

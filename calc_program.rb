@@ -9,10 +9,10 @@ text = ARGV.first
 input_string = InputString.new(text)
 
 
-elements = input_string.text
+tokens = input_string.tokens
 
 # 単位変換(→最小単位)
-unit_converter = UnitConverter.new(elements)
+unit_converter = UnitConverter.new(tokens)
 
 # 計算結果を正しい単位に変換
 answer = unit_converter.calculate

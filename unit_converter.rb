@@ -5,8 +5,8 @@
 class UnitConverter
   UNITS = { "mg" => 1, "g" => 1000, "kg" => 1000000 }.freeze
 
-  def initialize(elements)
-    @elements = elements
+  def initialize(tokens)
+    @tokens = tokens
     @units = filter_units
   end
 
@@ -20,7 +20,7 @@ class UnitConverter
 
   # 質量を最小(UNITSで1と設定したもの)に変換
   def convert_to_min
-    @elements.map do |token|
+    @tokens.map do |token|
       if token =~ /[0-9]+[a-z]+/
         unit = token.slice(/[a-z]+/)
         num = token.slice(/[0-9]+/).to_i
@@ -37,12 +37,12 @@ class UnitConverter
     min_unit = @units.sort_by { |u| UNIT[u] }.first
     ratio = UNITS[min_unit]
     "#{( sum / ratio ).to_s}#{min_unit}"
-    @elements.
+  end 
 
 
 
   def filter_units
-    @elements.
+    @tokens.
     select { |token| /[0-9]+[a-z]+/.match?(token) }.
     map { |token| token.slice(/[a-z]+/) }
   end
