@@ -1,5 +1,5 @@
-require "./token_calculator"
+require './token_calculator'
 
-puts TokenCalculater.new(ARGV.first).calculate
+puts TokenCalculator.new(ARGV.first).calculate
 
 
