@@ -1,12 +1,11 @@
 require "./token_parser"
-# UnitConverterの責任：
-# 単位を変換する
+
 
 class TokeCalculater
   UNITS = { "mg" => 1, "g" => 1000, "kg" => 1000000 }.freeze
 
   def initialize(text)
-    @tokens = TokenPaser.new(text).tokens
+    @tokens = TokenParser.new(text).tokens
     @units = filter_units
     validate_units!
   end
@@ -15,7 +14,7 @@ class TokeCalculater
     tokens = convert_to_min
     sum = eval(tokens.join)
     convert_to_correct(sum)
-  end 
+  end
 
   private
 
@@ -52,5 +51,7 @@ class TokeCalculater
     @units.each do |unit|
       unless UNITS.keys.any?(unit)
         raise ArgumentError, "error: the unit must be one of #{UNITS.keys}"
-
+      end
+    end
+  end
 end
