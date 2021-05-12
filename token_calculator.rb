@@ -38,7 +38,7 @@ class TokeCalculater
     min_unit = @units.sort_by { |u| UNIT[u] }.first
     ratio = UNITS[min_unit]
     "#{( sum / ratio ).to_s}#{min_unit}"
-  end 
+  end
 
 
 

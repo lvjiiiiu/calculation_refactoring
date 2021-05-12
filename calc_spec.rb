@@ -19,7 +19,7 @@ Rspec.describe do
     ['1kg + 300g / 7', '1042g'],
   ].each do |(arg, result)|
     it "#{arg} = #{resule}" do 
-      expect { system("./calc", arg)}.to output("#{resule}\n").to_stdout_from_any_process
+      expect { system("./calc", arg)}.to output("#{result}\n").to_stdout_from_any_process
     end
   end
 
@@ -30,3 +30,6 @@ Rspec.describe do
   ].each do |arg|
     it "invalid argument: #{arg}" do
       expect { system("./calc", arg)}.to output.to_stderr_from_any_process
+    end
+  end
+end
