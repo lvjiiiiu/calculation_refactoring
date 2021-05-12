@@ -1,7 +1,6 @@
 require "./token_parser"
 
-
-class TokeCalculater
+class TokenCalculator
   UNITS = { "mg" => 1, "g" => 1000, "kg" => 1000000 }.freeze
 
   def initialize(text)
@@ -34,7 +33,7 @@ class TokeCalculater
 
 
   def convert_to_correct(sum)
-    min_unit = @units.sort_by { |u| UNIT[u] }.first
+    min_unit = @units.sort_by { |u| UNITS[u] }.first
     ratio = UNITS[min_unit]
     "#{( sum / ratio ).to_s}#{min_unit}"
   end

@@ -1,6 +1,3 @@
-require "./unit_converter"
-# InputStringの責任：
-# 入力された文字列の加工、異常系の判定
 
 class TokenParser
   attr_reader :tokens

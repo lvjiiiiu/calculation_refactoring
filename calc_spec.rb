@@ -1,15 +1,14 @@
-require "bundler/inline"
+require 'bundler/inline'
 
 gemfile do
-  source "https://rubygems.org"
-  gem "rspec"
+  source 'https://rubygems.org'
+  gem 'rspec'
 end
 
-require "rspec"
-require "rspec/autorun"
+require 'rspec'
+require 'rspec/autorun'
 
-
-Rspec.describe do
+RSpec.describe do
   [
     ['1kg + 3kg', '4kg'],
     ['1kg + 100g', '1100g'],
@@ -18,8 +17,8 @@ Rspec.describe do
     ['100g / 4 + 2kg * 3', '6025g'],
     ['1kg + 300g / 7', '1042g'],
   ].each do |(arg, result)|
-    it "#{arg} = #{resule}" do 
-      expect { system("./calc", arg)}.to output("#{result}\n").to_stdout_from_any_process
+    it "#{arg} = #{result}" do
+      expect { system('./calc', arg) }.to output("#{result}\n").to_stdout_from_any_process
     end
   end
 
@@ -29,7 +28,9 @@ Rspec.describe do
     '1kg * 3g'
   ].each do |arg|
     it "invalid argument: #{arg}" do
-      expect { system("./calc", arg)}.to output.to_stderr_from_any_process
+      expect { system('./calc', arg) }.to output.to_stderr_from_any_process
     end
   end
 end
+
+
